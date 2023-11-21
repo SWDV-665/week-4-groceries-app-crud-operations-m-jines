@@ -18,6 +18,12 @@
         <p>{{item.quantity}}</p>
       </ion-item>
       <ion-item-options>
+       
+        <ion-button (click)="shareItem(item, i)" ion-button color="light" icon-start>
+          <ion-icon name="share"></ion-icon>
+          Share
+        </ion-button>
+
         <ion-button (click)="editItem(item, i)" ion-button color="primary" icon-start>
           <ion-icon name="create"></ion-icon>
           Edit

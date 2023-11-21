@@ -46,6 +46,16 @@ export class Tab1Page {
     // this.items.splice(index,1);
   }
 
+  async shareItem(item: any, index: any) {
+    console.log("Sharing Item - ", item, index);
+    const toast = this.toastCtrl.create({
+      message: 'Sharing Item',
+      duration: 3000
+    });
+    (await toast).present();
+    
+  }
+
   async editItem(item: any, index: any) {
     console.log("Edit Item - ", item, index);
     const toast = this.toastCtrl.create({
