@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { AlertController} from '@ionic/angular';
 import { NavController } from '@ionic/angular';
-import { GroceriesService } from 'src/app/groceries.service'
+import { GroceriesService } from 'src/app/groceries.service';
 import { InputDialogServiceService } from 'src/app/input-dialog-service.service';
+import { Share } from '@capacitor/share';
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -49,10 +51,19 @@ export class Tab1Page {
   async shareItem(item: any, index: any) {
     console.log("Sharing Item - ", item, index);
     const toast = this.toastCtrl.create({
-      message: 'Sharing Item',
+      message: 'Sharing Item: ' + item.name,
       duration: 3000
     });
     (await toast).present();
+    try {
+      await Share.share({
+        title: 'Sharing Grocery Item',
+        text: 'Item: ' + item.name + ", Quantity: " + item.quantity
+      });
+    } catch (error) {
+      console.error('Error sharing item: ', error);
+      
+    }
     
   }
 
